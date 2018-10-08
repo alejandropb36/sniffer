@@ -22,6 +22,20 @@ def getTOS (data):
     reliability = {0: "Normal reliability", 1: "High reliability"}
     cost = {0: "Normal monetary cost", 1: "Minimize monetary cost"}
 
+    D = data & 0x10
+    D >>= 4
+    T = data & 0x8
+    T >>= 3
+    R = data & 0x4
+    R >>= 2
+    M = data & 0x2
+    M >>= 1
+
+    tabs = '\n\t\t\t'
+    TOS = precedence[data >> 5] + tabs + delay[D] + tabs + throughput[T] + tabs + reliability[R] + tabs + cost[M]
+    return TOS
+ 
+
 # the public network interface
 HOST = socket.gethostbyname(socket.gethostname())
 
@@ -46,7 +60,9 @@ version_IHL = unpackedData[0]
 version = version_IHL >> 4
 IHL = version_IHL & 0xf
 #print (version)
-
+TOS = unpackedData[1]
+totalLength = unpackedData[2]
+ID = unpackedData[3]
 
 
 # disabled promiscuous mode
