@@ -35,6 +35,22 @@ def getTOS (data):
     TOS = precedence[data >> 5] + tabs + delay[D] + tabs + throughput[T] + tabs + reliability[R] + tabs + cost[M]
     return TOS
  
+ # Obtener bandera de 3 bits
+def getFlags(data):
+    flagR = {0: "0 - Reserved bit"}
+    flagDF = {0: "0 - Fragment if necessary", 1: "1 - Do not fragment"}
+    flagMF = {0: "0 - Last fragment", 1: "1 - More fragments"}
+
+    R = data & 0x8000
+    R >>= 15
+    DF = data & 0x4000
+    DF >>= 14
+    MF = data & 0x2000
+    MF >>= 13
+
+    tabs = '\n\t\t\t'
+    flags = flagR[R] + tabs + flagDF[DF] + tabs + flagMF[MF]
+    return flags
 
 # the public network interface
 HOST = socket.gethostbyname(socket.gethostname())
@@ -63,7 +79,9 @@ IHL = version_IHL & 0xf
 TOS = unpackedData[1]
 totalLength = unpackedData[2]
 ID = unpackedData[3]
-
+flags = unpackedData[4]
+fragmentOffset = unpackedData[4] & 0x1FFF
+TTL = unpackedData[6]
 
 # disabled promiscuous mode
 s.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
