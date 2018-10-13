@@ -1,6 +1,7 @@
 import socket
 import sys
 import struct
+import re
 
 
 def reciveData (s):
@@ -52,6 +53,18 @@ def getFlags(data):
     flags = flagR[R] + tabs + flagDF[DF] + tabs + flagMF[MF]
     return flags
 
+def getProtocol(protocolNr):
+    protocolFile = open('Protocol.txt', 'r')
+    protocolData = protocolFile.read()
+    protocol = re.findall(r'\n' + str(protocolNr) + ' (?:.)+\n', protocolData)
+    if protocol:
+        protocol = protocol[0]
+        protocol = protocol.replace('\n', '')
+        protocol = protocol.replace(str(protocolNr), '')
+        protocol = protocol.lstrip()
+        return protocol
+    else:
+        return "No such protocol."
 # the public network interface
 HOST = socket.gethostbyname(socket.gethostname())
 
@@ -82,6 +95,8 @@ ID = unpackedData[3]
 flags = unpackedData[4]
 fragmentOffset = unpackedData[4] & 0x1FFF
 TTL = unpackedData[6]
+protocolNr = unpackedData[6]
+
 
 # disabled promiscuous mode
 s.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
