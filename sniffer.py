@@ -54,7 +54,7 @@ def getFlags(data):
     return flags
 
 def getProtocol(protocolNr):
-    protocolFile = open('Protocol.txt', 'r')
+    protocolFile = open('Protocolo.txt', 'r')
     protocolData = protocolFile.read()
     protocol = re.findall(r'\n' + str(protocolNr) + ' (?:.)+\n', protocolData)
     if protocol:
@@ -88,7 +88,7 @@ unpackedData = struct.unpack('!BBHHHBBH4s4s', data[:20])
 version_IHL = unpackedData[0]
 version = version_IHL >> 4
 IHL = version_IHL & 0xf
-#print (version)
+#print (version) esto fue una prueba
 TOS = unpackedData[1]
 totalLength = unpackedData[2]
 ID = unpackedData[3]
@@ -96,6 +96,29 @@ flags = unpackedData[4]
 fragmentOffset = unpackedData[4] & 0x1FFF
 TTL = unpackedData[6]
 protocolNr = unpackedData[6]
+checksum = unpackedData[7]
+sourceAddress = socket.inet_ntoa(unpackedData[8])
+destinationAddress = socket.inet_ntoa(unpackedData[9])
+print ('\n\n')
+print("-------------------------------------------------------------------------------")
+print ("An IP packet with the size %i was captured." % (unpackedData[2]))
+print ("Raw data: " + str(data))
+print ("\nParsed data")
+print ("Version:\t\t" + str(version))
+print ("Header Length:\t\t" + str(IHL*4) + " bytes")
+print ("Type of Service:\t" + getTOS(TOS))
+print ("Length:\t\t\t" + str(totalLength))
+print ("ID:\t\t\t" + str(hex(ID)) + " (" + str(ID) + ")")
+print ("Flags:\t\t\t" + getFlags(flags))
+print ("Fragment offset:\t" + str(fragmentOffset))
+print ("TTL:\t\t\t" + str(TTL))
+print ("Protocol:\t\t" + getProtocol(protocolNr))
+print ("Checksum:\t\t" + str(checksum))
+print ("Source:\t\t\t" + sourceAddress)
+print ("Destination:\t\t" + destinationAddress)
+print ("Payload:\n" + str(data[20:]))
+print("-------------------------------------------------------------------------------")
+print ('\n\n')
 
 
 # disabled promiscuous mode
