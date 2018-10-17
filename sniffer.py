@@ -8,7 +8,7 @@ def reciveData (s):
     data = ''
     try:
         data = s.recvfrom(65565)
-    except timeout:
+    except (TimeoutError):
         data = ''
     except:
         print("An error happened. ")
@@ -67,14 +67,11 @@ def getProtocol(protocolNr):
         return "No such protocol."
 # the public network interface
 HOST = socket.gethostbyname(socket.gethostname())
-
 # create a raw socket and bind it to the public interface
 s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_IP)
 s.bind((HOST, 0))
-
 # Include IP headers
 s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-
 # receive all packages
 s.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
 
