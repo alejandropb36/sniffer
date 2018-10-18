@@ -5,21 +5,6 @@
  
 #import module
 import socket
-<<<<<<< HEAD
- 
-
-HOST = socket.gethostbyname(socket.gethostname())
-# create a raw socket and bind it to the public interface
-s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_IP)
-s.bind((HOST, 0))
-# Include IP headers
-s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-# receive all packages
-s.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
-
-# receive a packet
-while True:
-=======
 import sys
 import struct
 import re
@@ -138,7 +123,6 @@ print ("Payload:\n" + str(data[20:]))
 print("-------------------------------------------------------------------------------")
 print ('\n\n')
 
->>>>>>> ffebfd4032000e462c8328845bcdcdf834d34461
 
    # print output on terminal
    print (s.recvfrom(65565))
