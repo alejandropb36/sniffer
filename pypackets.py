@@ -18,15 +18,15 @@ else:
     s=socket.socket(socket.PF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0800))
 
 # ciclo para que no deje de capturar
-while True:
-    
+#while True:
+for x in range(0,5):  
     # Capture packets from network
     pkt=s.recvfrom(65565)
 
     # extract packets with the help of pye.unpack class 
     unpack=pye.unpack()
-
-    print ("\n\n[+] ------------ Cabecera Ethernet ----- [+]")
+    print ("\n\n[+] ---------------- Paquete # %d ---- [+]" % x)
+    print ("[+] ------------ Cabecera Ethernet ----- [+]")
 
     # print data on terminal
     for i in unpack.eth_header(pkt[0][0:14]).items():
