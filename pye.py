@@ -20,9 +20,9 @@ class unpack:
   destination_mac=binascii.hexlify(storeobj[0])
   source_mac=binascii.hexlify(storeobj[1])
   eth_protocol=storeobj[2]
-  data={"Destination Mac":destination_mac,
-  "Source Mac":source_mac,
-  "Protocol":eth_protocol}
+  data={"MAC Destino":destination_mac,
+  "MAC Origen":source_mac,
+  "Protocolo":eth_protocol}
   return data
 
  # ICMP HEADER Extraction
@@ -31,7 +31,7 @@ class unpack:
   icmp_type = icmph[0]
   code = icmph[1]
   checksum = icmph[2]
-  data={'ICMP Type':icmp_type,
+  data={'Tipo ICMP':icmp_type,
   "Code":code,
   "CheckSum":checksum}
   return data
@@ -43,9 +43,9 @@ class unpack:
   dest_port = storeobj[1]
   length = storeobj[2]
   checksum = storeobj[3]
-  data={"Source Port":source_port,
-  "Destination Port":dest_port,
-  "Length":length,
+  data={"Puerto Origen":source_port,
+  "Puerto Destino":dest_port,
+  "Tamaño":length,
   "CheckSum":checksum}
   return data
 
@@ -64,15 +64,15 @@ class unpack:
   _destination_address =socket.inet_ntoa(storeobj[9])
 
   data={'Version':_version,
-  "Tos":_tos,
-  "Total Length":_total_length,
-  "Identification":_identification,
+  "TOS":_tos,
+  "Tamaño total":_total_length,
+  "Identificacion":_identification,
   "Fragment":_fragment_Offset,
   "TTL":_ttl,
-  "Protocol":_protocol,
-  "Header CheckSum":_header_checksum,
-  "Source Address":_source_address,
-  "Destination Address":_destination_address}
+  "Protocolo":_protocol,
+  "Ecabezado CheckSum":_header_checksum,
+  "Direccion Origen":_source_address,
+  "Direccion Destino":_destination_address}
   return data
 
  # Tcp Header Extraction
@@ -87,9 +87,9 @@ class unpack:
   _window  =storeobj[6]
   _checksum  =storeobj[7]
   _urgent_pointer =storeobj[8]
-  data={"Source Port":_source_port,
-  "Destination Port":_destination_port,
-  "Sequence Number":_sequence_number,
+  data={"Puerto Origen":_source_port,
+  "Puerto Destino":_destination_port,
+  "Sequencia de numeros":_sequence_number,
   "Acknowledge Number":_acknowledge_number,
   "Offset & Reserved":_offset_reserved,
   "Tcp Flag":_tcp_flag,

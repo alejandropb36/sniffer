@@ -26,17 +26,17 @@ while True:
     # extract packets with the help of pye.unpack class 
     unpack=pye.unpack()
 
-    print ("\n\n[+] ------------ Ethernet Header----- [+]")
+    print ("\n\n[+] ------------ Cabecera Ethernet ----- [+]")
 
     # print data on terminal
-    for i in unpack.eth_header(pkt[0][0:14]).iteritems():
+    for i in unpack.eth_header(pkt[0][0:14]).items():
         a,b=i
         print ("{} : {} | ".format(a,b))
-    print ("\n[+] ------------ IP Header ------------[+]")
-    for i in unpack.ip_header(pkt[0][14:34]).iteritems():
+    print ("\n[+] ------------ Cabecera IP ------------[+]")
+    for i in unpack.ip_header(pkt[0][14:34]).items():
         a,b=i
         print ("{} : {} | ".format(a,b))
-    print ("\n[+] ------------ Tcp Header ----------- [+]")
-    for  i in unpack.tcp_header(pkt[0][34:54]).iteritems():
+    print ("\n[+] ------------ Cabecera TCP ----------- [+]")
+    for  i in unpack.tcp_header(pkt[0][34:54]).items():
         a,b=i
         print ("{} : {} | ".format(a,b))
