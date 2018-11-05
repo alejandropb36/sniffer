@@ -11,6 +11,7 @@ def menu():
     print("\t\t\t"+"/    |    \    |  \  \___ \|   |  \  ||  |   |  | \  \___ / __ \|  |_> >")
     print("\t\t\t"+"\____|__  /____|__ \/____  >___|  /__||__|   |__|  \___  >____  /   __/ ")
     print("\t\t\t"+"        \/        \/     \/     \/                     \/     \/|__|    ")
+    print("\t\t\t\t\tPower by Scapy")
     print("\n\n")
 
     print("\n\n\t\t\t\t\t► MENU PRINCIPAL AKsniffcap ◄")

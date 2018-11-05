@@ -1,7 +1,3 @@
-#!/usr/bin/python
-#
-# Simplest Form Of Packet sniffer in python
-# Works On Linux Platform
 from io import open
 import os
 import sys
@@ -14,13 +10,49 @@ while opcionMenu != "0":
     opcionMenu = input ("Elige una opcion: ")
     if opcionMenu == "1":
         #capturarPaquetes()
-        cant = int(input('\t\t\t\tIngrese la cantidad de paquetes que desea capturar: '))
-        a=sniff(filter="tcp", count=cant)
-        print("",a.nsummary())
+        pkt_count = int(input('\t\t\t\tIngrese la cantidad de paquetes que desea capturar: '))
+        pkts = sniff(filter="tcp", count = pkt_count)
+        print("",pkts.nsummary())
         os.system("pause")
+
+        numpkt = int(input('\nIngrese el numero del paquete que quiere visualizar: '))
+        os.system("cls")
+        
+        print("\n\t-------- Paquete visualizado en hexadecimal --------\n")
+        pkt_hex = hexdump(pkts[numpkt])
+        #print(hexdump(pkt[numpkt]))
+        print(pkt_hex)
+        os.system("pause")
+
+        os.system("cls")
+        print(pkts[numpkt].show())
+        os.system("pause")
+
+        guardar = input("\t Desea guardar el paquete en un archivo .cap [y/n]: ")
+        if guardar == "y":
+            wrpcap(str(numpkt) + ".cap",pkts[numpkt]) #(1.cap,1)
+        os.system("pause")
+
     elif opcionMenu == "2":
         #importarPaquete()
         print("Opcion 2 del menu")
+        file_name = input("\tEscribe el nombre del archivo .cap a importar: ")
+        pkts = rdpcap(file_name)
+
+        print("",pkts.nsummary())
+        os.system("pause")
+
+        numpkt = int(input('\nIngrese el numero del paquete que quiere visualizar: '))
+        os.system("cls")
+        
+        print("\n\t-------- Paquete visualizado en hexadecimal --------\n")
+        pkt_hex = hexdump(pkts[numpkt])
+        #print(hexdump(pkt[numpkt]))
+        print(pkt_hex)
+        os.system("pause")
+
+        os.system("cls")
+        print(pkts[numpkt].show())
         os.system("pause")
     elif opcionMenu == "3":
         #Trabajando
@@ -29,6 +61,3 @@ while opcionMenu != "0":
     else:
         print("Adios !!! :V")
         os.system("pause")
-    
-	#numpck = int(input('\nIngrese el numero del paquete que quiere visualizar: '))
-    #print(hexdump(a[numpck]))
