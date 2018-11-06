@@ -13,7 +13,6 @@ while opcionMenu != "0":
         pkt_count = int(input('\t\t\t\tIngrese la cantidad de paquetes que desea capturar: '))
         pkts = sniff(filter="tcp", count = pkt_count)
         print("",pkts.nsummary())
-        os.system("pause")
 
         numpkt = int(input('\nIngrese el numero del paquete que quiere visualizar: '))
         os.system("cls")
@@ -40,7 +39,6 @@ while opcionMenu != "0":
         pkts = rdpcap(file_name)
 
         print("",pkts.nsummary())
-        os.system("pause")
 
         numpkt = int(input('\nIngrese el numero del paquete que quiere visualizar: '))
         os.system("cls")
@@ -56,7 +54,7 @@ while opcionMenu != "0":
         os.system("pause")
     elif opcionMenu == "3":
         #Trabajando
-        print("Opcion 3 del menu")
+        print("Trabajndo ... ! :D")
         os.system("pause")
     else:
         print("Adios !!! :V")
