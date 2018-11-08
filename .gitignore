@@ -3,3 +3,5 @@ lib/__pycache__/
 __pycache__/
 archivos/
 .pyc
+.cap
+.pcap
