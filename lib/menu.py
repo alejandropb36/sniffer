@@ -11,15 +11,17 @@ def menu():
     print("\t\t\t"+"/    |    \    |  \  \___ \|   |  \  ||  |   |  | \  \___ / __ \|  |_> >")
     print("\t\t\t"+"\____|__  /____|__ \/____  >___|  /__||__|   |__|  \___  >____  /   __/ ")
     print("\t\t\t"+"        \/        \/     \/     \/                     \/     \/|__|    ")
-    print("\t\t\t\t\t Power by Scapy")
+    print("\t\t\t\t\t Version 2.0   Power by Scapy")
     print("\t\t\t\t\t Lisence: MIT")
-    print("\t\t\t\t\t Programadores: Alejandro Ponce y Kevin Molina :D")
+    print("\t\t\t\t\t Programador: alejandropb36")
+    print("\t\t\t\t\t GitHub: github.com/alejandropb36")
     print("\n\n")
 
     print("\n\n\t\t\t\t\t► MENU PRINCIPAL AKsniffcap ◄")
     print ("\t\t\t\t\t[1] - Capturar paquetes en tiempo real")
     print ("\t\t\t\t\t[2] - Importar paquete")
-    #print ("\t\t\t\t\t[3] - ")
+    print ("\t\t\t\t\t[3] - Mostar paquetes")
+    print ("\t\t\t\t\t[3] - Exportar paquetes")
     print ("\t\t\t\t\t[0] - salir")
 
 

@@ -1,10 +1,8 @@
-from io import open
-import os
-import sys
-from scapy.all import * 
+from lib.Sniffer import *
 from lib.menu import *
 
 opcionMenu = "1"
+sniffer = Sniffer()
 while opcionMenu != "0":
     menu()
     opcionMenu = input ("Elige una opcion: ")
@@ -31,6 +29,7 @@ while opcionMenu != "0":
         if guardar == "y":
             wrpcap(str(numpkt) + ".cap",pkts[numpkt]) #(1.cap,1)
         os.system("pause")
+        sniffer.capturarPaquetes("tcp",pkts_count)
 
     elif opcionMenu == "2":
         #importarPaquete()
@@ -54,7 +53,7 @@ while opcionMenu != "0":
         os.system("pause")
     elif opcionMenu == "3":
         #Trabajando
-        print("Trabajndo ... ! :D")
+        sniffer.mostrarPaquetes()
         os.system("pause")
     else:
         print("Adios !!! :V")
